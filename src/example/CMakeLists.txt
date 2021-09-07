@@ -53,6 +53,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message1.msg
 #   Message2.msg
 # )
+add_message_files(DIRECTORY msg
+	FILES
+	answer.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -73,6 +77,11 @@ find_package(catkin REQUIRED COMPONENTS
 #   DEPENDENCIES
 #   std_msgs
 # )
+generate_messages(
+	DEPENDENCIES
+	std_msgs
+)
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -137,6 +146,10 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/example_node.cpp)
 add_executable(hello_world src/hello_world.cpp)
 target_link_libraries(hello_world ${catkin_LIBRARIES})
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
